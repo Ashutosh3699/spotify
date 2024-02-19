@@ -1,0 +1,180 @@
+/* For WebKit (Chrome, Safari) */
+/* Track */
+::-webkit-scrollbar-track {
+    background: #121212; /* Dark color for track */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #b3b3b3; /* Light color for thumb */
+    border-radius: 10px; /* Rounded corners for thumb */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999; /* Darker color on hover */
+  }
+  
+  /* For Firefox */
+  /* Width of the scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #101010 #121212; /* Light thumb and dark track */
+  }
+  
+  
+  /* For IE and Edge */
+  /* Track */
+  body::-ms-scrollbar-track {
+    background: #121212;
+  }
+  
+  /* Handle */
+  body::-ms-scrollbar-thumb {
+    background: #b3b3b3;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  body::-ms-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+
+.songList ul li{
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 1rem 0.25rem;
+  background-color: #393939;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.songList ul li div{
+
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.songList ul li div p{
+
+  width: 80%;
+
+}
+
+.songList ul li p{
+
+  width: 50%;
+  text-align: start ;
+  font-size: small;
+}
+
+.seekbar::-webkit-slider-thumb , .volume_range::-webkit-slider-thumb {
+
+  appearance: none;
+  height: 0.65rem;
+  width: 0.65rem;
+  background-color: #93fd94;
+  border-radius: 50%;
+  z-index: 1;
+  position: relative;
+  transition: border 200ms ease-in-out;
+}
+
+
+
+@media (max-width:1300px) {
+  
+  .left{
+    width: 300px;
+    position: absolute;
+    filter: drop-shadow(2px 4px 6px black);
+    z-index: 15;
+    left: -100%;
+    transition: all 300ms;
+  }
+  .rmhmburger{
+
+    display: block;
+  }
+  .slide{
+
+    left: 0%;
+  }
+  .fotter{
+
+    height: 25%;
+    gap: 0.25rem;
+  }
+  .btn_eng{
+    display: none;
+  }
+
+  .right{
+
+    width: 100% !important;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .btm_text_content{
+    display: none;
+  }
+  .card{
+
+    width: 45%;
+    margin: 0 auto;
+  }
+  .card img{
+
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width:500px){
+
+  .top_btn{
+
+    display: none;
+  }
+  .right{
+
+    width: 100% !important;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .songinfo{
+
+    font-size: small;
+  }
+  .songtime{
+
+    font-size: small;
+  }
+  .footter{
+    display: none;
+  }
+
+  .card{
+
+    width: 95%;
+    margin: 0 auto;
+  }
+  .card img{
+
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+
+
+  

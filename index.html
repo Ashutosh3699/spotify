@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+
+    <title>Spotify-clone</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- top level container -->
+    <div class="w-[100vw] h-[100vh] overflow-x-hidden overflow-y-auto relative bg-black flex top_level">
+
+        <!-- left side -->
+        <div class="m-2 mt-2 xl:w-[23%] w-[300px] z-20 h-[89%] left xl:relative absolute">
+
+            <!-- head -->
+            <div class="py-5 px-6 bg-[#121212] rounded-lg space-y-3 h-[25%]">
+
+                <div class="cursor-pointer flex justify-between items-center">
+                    <img src="./assets/logo.svg" alt="logo">
+
+                    <div class="px-4 py-2 rounded-full cursor-pointer xl:hidden block rmhmburger text-white">
+                        <i class="fa-solid fa-bars duration-300 hover:scale-105"></i>
+                    </div>
+                </div>
+
+                <ul class="py-2 space-y-5 ">
+                    <li class="flex gap-x-5 text-white text-md font-semibold tracking-wide items-center font-roboto cursor-pointer ">
+                        <i class="fa-solid fa-house text-lg"></i>
+                        <p class="hover:underline">Home</p>
+                    </li>
+
+                    <li class="flex gap-x-5 text-white text-md tracking-wide  items-center font-roboto opacity-50 hover:opacity-100 cursor-pointer">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                        <p>Search</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- your library -->
+
+            <div class="py-5 px-6 bg-[#121212] relative rounded-lg space-y-3  mt-3 h-[73%]">
+
+                <div class="flex justify-between text-white text-md font-semibold tracking-wide items-center font-roboto cursor-pointer ">
+                    
+                    <div class="flex gap-x-4 opacity-50 duration-700 hover:opacity-100">
+
+                        <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" class="w-6 h-6 "><path fill="white" d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path></svg>
+                    
+                        <p >Your library</p>
+                    </div>
+                    
+                    <div class="">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+            
+                </div>
+
+                <div class="songList text-white mt-2  h-[60%] overflow-x-hidden overflow-y-auto ">
+                    
+                    <ul class="px-0 text-sm font-roboto space-y-2">
+                        
+                    </ul>
+                </div>
+
+
+
+                <!-- footer -->
+                <div class="text-white flex flex-col gap-3 absolute bottom-0  pb-4 fotter">
+
+                    <ul class=" flex flex-wrap justify-between gap-5 gap-y-2 font-roboto text-[0.65rem] font-bold opacity-45 pr-7 ">
+                        <li>
+                            <a href="#">Legal</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Safety and Privacy Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                 Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Cookies
+                           </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                About Ads
+                           </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Accessibility
+                           </a>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="font-roboto opacity-45 font-semibold duration-500 hover:opacity-70">Cookies</a>
+
+                    <button class=" bg-black opacity-35 mr-10 font-roboto font-thin hidden md:flex items-center gap-x-3 py-2 px-5 border-2 rounded-full " >
+                        <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="w-4 h-4"><path fill="#ffffff" d="M8.152 16H8a8 8 0 1 1 .152 0zm-.41-14.202c-.226.273-.463.713-.677 1.323-.369 1.055-.626 2.496-.687 4.129h3.547c-.06-1.633-.318-3.074-.687-4.129-.213-.61-.45-1.05-.676-1.323-.194-.235-.326-.285-.385-.296h-.044c-.055.007-.19.052-.391.296zM4.877 7.25c.062-1.771.34-3.386.773-4.624.099-.284.208-.554.329-.806a6.507 6.507 0 0 0-4.436 5.43h3.334zm-3.334 1.5a6.507 6.507 0 0 0 4.436 5.43 7.974 7.974 0 0 1-.33-.806c-.433-1.238-.71-2.853-.772-4.624H1.543zm4.835 0c.061 1.633.318 3.074.687 4.129.214.61.451 1.05.677 1.323.202.244.336.29.391.297l.044-.001c.06-.01.19-.061.385-.296.226-.273.463-.713.676-1.323.37-1.055.626-2.496.687-4.129H6.378zm5.048 0c-.061 1.771-.339 3.386-.772 4.624-.082.235-.171.46-.268.674a6.506 6.506 0 0 0 4.071-5.298h-3.03zm3.031-1.5a6.507 6.507 0 0 0-4.071-5.298c.097.214.186.44.268.674.433 1.238.711 2.853.772 4.624h3.031z"></path></svg>
+                        English
+                    </button>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- right -->
+        <div class="right m-1 mb-0 mt-2 z-0  xl:w-[76%] w-full h-full md:h-[89%] text-white xl:relative bg-[#121212] rounded-lg space-y-1 overflow-x-hidden overflow-y-auto">
+            
+            <!-- nav bar -->
+            <nav class="flex justify-between items-center py-2 px-5 z-10 bg-[#090909] sticky top-0 right-0 left-0 bg-opacity-95">
+                <div class="flex gap-x-2 ">
+                    <div class="bg-[#0e0e0e] px-4 py-2 rounded-full cursor-pointer hmburger ">
+                        <i class="fa-solid fa-bars duration-300 hover:scale-105"></i>
+                    </div>
+                    <div class="bg-[#0e0e0e] px-4 py-2 rounded-full cursor-pointer">
+                        <i class="fa-solid fa-chevron-left duration-300 hover:scale-105"></i>
+                    </div>
+                    <div class="bg-[#0e0e0e] px-4 py-2 rounded-full cursor-pointer">
+                        <i class="fa-solid fa-chevron-right duration-300 hover:scale-105"></i>
+                    </div>
+                </div>
+
+                <div class=" hidden md:flex gap-x-8  mr-6 top_btn">
+                    <button class="font-roboto font-bold text-white opacity-40 duration-300 hover:scale-105 hover:opacity-100"
+                    >Sign up</button>
+
+                    <button class="bg-slate-100 text-black py-3 px-8 font-roboto font-bold text-md rounded-full cursor-pointer 
+                        duration-200 hover:scale-105 hover:bg-slate-200">Log in</button>
+                </div>
+            </nav>
+
+            <!-- spotify heading -->
+
+            <div class="pt-4 px-5 ">
+
+                <h1 class="font-roboto font-bold text-[1.5rem] text-slate-300 mb-3">Spotify Playlist</h1>
+
+                <!-- card container important -->
+                <div class="cardContainer flex flex-wrap justify-start gap-4 ">
+
+                    <div data-folder="ncs" class=" lg:w-[205px] w-full sm:w-[45%] rounded-md p-4 bg-[#1a1a1a] relative group duration-300 hover:bg-[#353535] cursor-pointer card">
+
+                        <img src="./assets/image_card3.jpg" alt="" class="object-contain rounded-md">
+
+                        <h3 class="font-roboto font-semibold text-sm mt-2 text-[#999ea5]">Today's Top Hits</h3>
+
+                        <p class="font-roboto text-md mt-2">Dua Lipa is on top of the Hottest 50!</p>
+
+                        <div class="px-6 py-4  bg-green-500 w-9 rounded-full flex justify-center items-center absolute bottom-20 right-4 duration-300 opacity-0 
+                        group-hover:opacity-100 group-hover:bottom-24 ">
+                            <i class="fa-solid fa-play text-black"></i>
+                        </div>
+                    </div>
+
+                    <div data-folder="cs" class="lg:w-[205px] w-full sm:w-[45%]  rounded-md p-4 bg-[#1a1a1a] relative group duration-300 hover:bg-[#353535] cursor-pointer card">
+
+                        <img src="./assets/image_card4.jpg" alt="" class="object-contain rounded-md">
+
+                        <h3 class="font-roboto font-semibold text-sm mt-2 text-[#999ea5]">Today's Top Hits</h3>
+
+                        <p class="font-roboto text-md mt-2">Dua Lipa is on top of the Hottest 50!</p>
+
+                        <div class="px-6 py-4  bg-green-500 w-9 rounded-full flex justify-center items-center absolute bottom-20 right-4 duration-300 opacity-0 
+                        group-hover:opacity-100 group-hover:bottom-24 ">
+                            <i class="fa-solid fa-play text-black"></i>
+                        </div>
+                    </div>
+
+
+                  
+                </div>
+
+
+                <div class="h-[10rem] w-full"></div>
+            </div>
+
+
+
+            <div class="flex flex-col gap-y-2 justify-center items-center py-2 m-0 px-5 z-10 bg-[#292929] sticky bottom-0 right-0 left-0 bg-opacity-95">
+                
+                <div class="flex justify-between items-center w-full">
+
+                    <div class="songinfo w-[30%] text-[0.6rem] sm:text-sm"></div>
+
+                    <div class="flex  justify-center items-center gap-x-4 cursor-pointer w-[20%] ">
+                    
+                        <i id="previous" class="fa-solid fa-backward-step fa-xl"></i>
+    
+                        <div id="play">
+                            <i class="fa-solid fa-circle-play fa-xl"></i>
+                        </div>
+    
+                        <i id="next" class="fa-solid fa-forward-step fa-xl relative"></i>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-2 items-center  w-[40%] justify-end">
+
+                        <div class="songtime w-[30%] text-end text-[0.6rem] sm:text-sm"></div>
+
+                        <div class="volume flex  gap-2 items-center ">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <input type="range" class="volume_range appearance-none w-[100%] sm:w-[50%] h-1 bg-no-repeat rounded-md bg-slate-600 
+                            bg-gradient-to-r from-green-400 to-green-400  cursor-pointer outline-none" >
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <input type="range" value="0" max="1000" class="seekbar mt-1 w-full appearance-none h-1 bg-no-repeat rounded-md bg-slate-600 
+                bg-gradient-to-r from-green-400 to-green-400  cursor-pointer outline-none">
+            </div>
+
+
+        </div>
+
+
+        <div class="absolute bottom-0 px-5 hidden w-[100%] h-[9%] footter  bg-gradient-to-r from-pink-600 to-blue-500 mb-0 md:flex justify-between items-center">
+
+            <div class="flex flex-col font-roboto font-bold text-md text-white">
+                <p>Preview of Spotify</p>
+                <p class="btm_text_content">Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+            </div>
+
+            <button class="bg-slate-50 px-7 py-3 rounded-full font-roboto font-extrabold text-gray-700 hover:scale-105">Sign up free</button>
+        </div>
+
+
+
+    </div>
+    
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+
+    <script src="https://kit.fontawesome.com/58a810656e.js" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
