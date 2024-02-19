@@ -1,31 +1,35 @@
 let songs;
 let currFolder;
+let currentSong = new Audio();
 
 async function getSongs(folder){
 
     currFolder = folder;
 
-    let a = await fetch(`http://127.0.0.1:5500/spotify/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let rep = await a.text();
 
-    // console.log(rep);
+    
 
     let div = document.createElement("div");
     div.innerHTML = rep;
 
     // Get all the list items within the ul element
     var listItems = div.getElementsByTagName('li');
+    
 
     // Initialize an empty array to store anchor tags
-     songs = [];
+    songs = [];
 
     // Iterate over each list item
     for (var i = 0; i < listItems.length; i++) {
         // Get the anchor tag within the current list item
         var anchor = listItems[i].getElementsByTagName('a')[0];
         
+        
         // Add the anchor tag to the array if it exists
         if (anchor.href.endsWith(".mp3")) {
+            console.log(anchor);
             songs.push(anchor.href);
         }
     }
@@ -37,16 +41,16 @@ async function getSongs(folder){
 
     for (const song of songs) {
         
-        let ans = song.replaceAll(`http://127.0.0.1:5500/spotify/${currFolder}/`,"");
+        // let ans = song.replaceAll(`/${currFolder}/`,"");
 
         // let modified = ans.replace(/\d+/g, "");
-        let removeMp3 = ans.replaceAll(".mp3","");
+        // let removeMp3 = ans.replaceAll(".mp3","");
 
         songUl.innerHTML = songUl.innerHTML +  `<li>         
 
                     <i class="fa-solid fa-music"></i>
 
-                    <p>${removeMp3} </p>
+                    <p>${song} </p>
 
                     <div >
                         <p>play now</p>
@@ -69,7 +73,7 @@ async function getSongs(folder){
     })
     
 }
-
+// getSongs();
 
 function secondsToTime(totalSeconds) {
     // Calculate minutes and remaining seconds
@@ -92,13 +96,13 @@ const rmhamburger = document.querySelector(".rmhmburger");
 
 hamburger.addEventListener('click',()=>{
 
-    console.log("add");
+    // console.log("add");
     left_side.classList.add("slide");
 
 });
 rmhamburger.addEventListener('click',()=>{
 
-    console.log("add");
+    // console.log("add");
     left_side.classList.remove("slide");
 
 })
@@ -108,10 +112,6 @@ const seek_bar = document.querySelector(".seekbar");
 seek_bar.value = 0;
 seek_bar.style.backgroundSize = 0+ "% 100%";
 
-let currentSong = new Audio();
-
-
-
 
 const playMusic = (track, pause=false)=>{
 
@@ -119,11 +119,13 @@ const playMusic = (track, pause=false)=>{
     document.querySelector(".songtime").innerHTML = "00:00/00:00";
 
     if(!track.includes(".mp3")){
-        currentSong.src = `http://127.0.0.1:5500/spotify/${currFolder}/`+track +".mp3";
+        currentSong.src = `/${currFolder}/`+track;
     }
     else{
         currentSong.src = track;
     }
+    
+    console.log(currentSong);
 
     if(!pause){
 
@@ -132,7 +134,7 @@ const playMusic = (track, pause=false)=>{
         play.innerHTML = `<i class="fa-solid fa-circle-pause fa-xl"></i>`;
     }
 
-    let song = track.replaceAll(`http://127.0.0.1:5500/spotify/${currFolder}/`,"");
+    let song = track.replaceAll(`/${currFolder}/`,"");
 
     let truncatedSong = song.substring(0, 15);
     if (track.length > 15) {
@@ -155,7 +157,7 @@ let cardContainer = document.querySelector(".cardContainer");
 
 async function displayAlbum(){
 
-    let a = await fetch(`http://127.0.0.1:5500/spotify/songs/`);
+    let a = await fetch(`/songs/`);
     let rep = await a.text();
 
     let div= document.createElement("div")
@@ -163,40 +165,51 @@ async function displayAlbum(){
     // console.log(div);
 
     let anchore = div.getElementsByTagName("a");
+
     // console.log(anchore);
 
     let array = Array.from(anchore);
+    // console.log(array);
 
         for (let index = 0; index < array.length; index++) {
             const e = array[index];
             
-        
-        if(e.href.includes("/songs/")){
-            let folder =  e.href.split("/").slice(-1)[0];
+            if(e.href.includes("/songs/") && !e.href.includes(".htaccess")){
+                let folder =  e.href.split("/").slice(-1)[0];
+                
+                // console.log(folder);
 
-            let a = await fetch(`http://127.0.0.1:5500/spotify/songs/${folder}/info.json`);
-            let rep = await a.json();
-            cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}"  class=" lg:w-[205px] w-full sm:w-[45%] rounded-md p-4 bg-[#1a1a1a] relative group duration-300 hover:bg-[#353535] cursor-pointer card">
+                if(folder!=="songs"){
 
-            <img src="./songs/${folder}/cover.jpg" alt="" class="object-contain rounded-md">
+                    let a = await fetch(`/songs/${folder}/info.json`);
+                    let rep = await a.json();
 
-            <h3 class="font-roboto font-semibold text-sm mt-2 text-[#999ea5]">${rep.title}</h3>
+                    cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}"  class=" lg:w-[205px] w-full sm:w-[45%] rounded-md p-4 bg-[#1a1a1a] relative group duration-300 hover:bg-[#353535] cursor-pointer card">
 
-            <p class="font-roboto text-md mt-2">${rep.description}</p>
+                    <img src="./songs/${folder}/cover.jpg" alt="" class="object-contain rounded-md">
 
-            <div class="px-6 py-4  bg-green-500 w-9 rounded-full flex justify-center items-center absolute bottom-20 right-4 duration-300 opacity-0 
-            group-hover:opacity-100 group-hover:bottom-24 ">
-                <i class="fa-solid fa-play text-black"></i>
-            </div>
-        </div>`
+                    <h3 class="font-roboto font-semibold text-sm mt-2 text-[#999ea5]">${rep.title}</h3>
+
+                    <p class="font-roboto text-md mt-2">${rep.description}</p>
+
+                    <div class="px-6 py-4  bg-green-500 w-9 rounded-full flex justify-center items-center absolute bottom-20 right-4 duration-300 opacity-0 
+                    group-hover:opacity-100 group-hover:bottom-24 ">
+                        <i class="fa-solid fa-play text-black"></i>
+                    </div>
+                </div>`
+                }
+
+            }
         }
-    }
+
 
     Array.from(document.getElementsByClassName("card")).forEach((e)=>{
 
         e.addEventListener("click", async items=>{
 
-            songs = await getSongs(`songs/${items.currentTarget.dataset.folder}`)
+            // console.log(items.currentTarget.dataset.folder);
+            songs = await getSongs(`songs/${items.currentTarget.dataset.folder}`);
+
         })
     })
 
@@ -215,7 +228,6 @@ async function main() {
     // console.log(songs);
     playMusic(songs[0] ,true);
     currentSong.volume = parseInt(volume_set.value)/100;
-    
 
     // attach play and pasue on play button
     play.addEventListener("click",()=>{
@@ -265,8 +277,9 @@ async function main() {
     });
 
     previous.addEventListener("click",()=>{
-        
+
         let index = songs.indexOf(currentSong.src);
+        console.log(index);
 
         if(index-1 >= 0){
             playMusic(songs[index-1]);
@@ -286,15 +299,6 @@ async function main() {
 
 
 main();
-
-
-
-
-
-
-
-
-
 
 
 
